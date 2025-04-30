@@ -1,0 +1,19 @@
+<!-- templates/find_hospital.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nearby Hospitals</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🏥 Find Nearby Hospitals</h1>
+    <p>Click below to find hospitals near you:</p>
+    <a href="https://www.google.com/maps/search/hospitals+near+{{ location[0] }},{{ location[1] }}/" target="_blank" class="button">
+      Open in Google Maps
+    </a>
+    <a href="{{ url_for('index') }}" class="button">← Back to Home</a>
+  </div>
+</body>
+</html>

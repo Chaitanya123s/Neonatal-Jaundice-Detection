@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenatal Jaundice Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="index-body">
+    <div class="container">
+        <h1 class="main-heading">👶 Prenatal Jaundice Detection</h1>
+
+<div class="info-box">
+    <h2>ℹ️ What is Prenatal Jaundice?</h2>
+    <p>
+        Prenatal (or neonatal) jaundice is a common condition in newborns where the skin and eyes appear yellow
+        due to high levels of bilirubin in the blood. It usually appears within the first few days after birth
+        and often resolves on its own. However, early detection is crucial, as severe cases can lead to complications
+        like brain damage if untreated.
+    </p>
+    <p>
+        Our system uses advanced AI techniques to analyze baby images and predict signs of jaundice, assisting
+        in early diagnosis and timely medical attention.
+    </p>
+</div>
+
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label for="image"> <b> Upload Baby's Image: </b> </label>
+            <input type="file" name="image" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if img_path %}
+        <div class="result-section">
+            <h2>📷 Uploaded Image</h2>
+            <img src="{{ img_path }}" alt="Uploaded Image" height="250px">
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result-section colorful-box">
+            <h2>🧪 Prediction Result</h2>
+            <p class="result">{{ result }}</p>
+
+            <h3>💡 Suggestions</h3>
+            <p>{{ suggestions }}</p>
+
+            <h3>📈 Performance Metrics</h3>
+            <ul>
+            <ul>
+                  <li><strong>Accuracy:</strong> {{ accuracy }}</li>
+                  <li><strong>Precision:</strong> {{ precision }}</li>
+                  <li><strong>Recall:</strong> {{ recall }}</li>
+                  <li><strong>F1 Score:</strong> {{ f1 }}</li>
+</ul>
+
+
+            </ul>
+
+            <h3>📊 Confusion Matrix</h3>
+            <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix" width="350px">
+
+            <a href="{{ url_for('generate_report') }}" class="btn-report">📄 Download PDF Report</a>
+        </div>
+        {% endif %}
+
+        <div class="links" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+    <div>
+        <a href="{{ url_for('find_hospital') }}">🏥 Nearest Hospital</a>
+        <a href="{{ url_for('dataset') }}">🗂️ Dataset</a>
+    </div>
+    <div>
+        <a href="{{ url_for('know_us') }}" style="float: right;">👥 Know Us</a>
+    </div>
+</div>
+
+
+
+    </div>
+</body>
+</html>
+
+
+

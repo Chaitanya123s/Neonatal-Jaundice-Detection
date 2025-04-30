@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Know Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .team-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .member-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 15px;
+            width: 250px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #ffb300;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 1.2em;
+            color: #ef6c00;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .role {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        a.back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #f57c00;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        a.back-btn:hover {
+            background-color: #e65100;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="main-heading">Meet the Team</h1>
+
+    <div class="team-section">
+        <h2 style="color:#f57c00;">Project Guide</h2>
+        <div class="member-grid">
+            <div class="card">
+                <img src="{{ url_for('static', filename='team/guide.jpg') }}" alt="Guide Photo">
+                <div class="name">Prof. Poshitha M</div>
+                <div class="role">Project Guide</div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 40px; color:#f57c00;">Student Developers</h2>
+        <div class="member-grid">
+            <div class="card">
+                <img src="{{ url_for('static', filename='team/student1.jpg') }}" alt="Donna">
+                <div class="name">Chaitanya</div>
+                <div class="role">Developer</div>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='team/student2.jpg') }}" alt="Student 2">
+                <div class="name">Donna S Sebastian</div>
+                <div class="role">Developer</div>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='team/student3.jpg') }}" alt="Student 3">
+                <div class="name">Manaswinee Panda</div>
+                <div class="role">Developer</div>
+            </div>
+
+            <div class="card">
+                <img src="{{ url_for('static', filename='team/student4.jpg') }}" alt="Student 4">
+                <div class="name">Mani Gupta</div>
+                <div class="role">Developer</div>
+            </div>
+        </div>
+    </div>
+
+    <a class="back-btn" href="{{ url_for('index') }}">← Back to Home</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dataset Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .container {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stats-box {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background-color: #ffe082;
+            padding: 25px;
+            border-radius: 12px;
+            width: 220px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            font-size: 24px;
+            color: #ef6c00;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 32px;
+            font-weight: bold;
+            color: #5d4037;
+        }
+
+        canvas {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .back-btn {
+            margin-top: 40px;
+            display: inline-block;
+            background-color: #f57c00;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #e65100;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="main-heading">Dataset Insights</h1>
+
+    <div class="stats-box">
+        <div class="stat-card">
+            <h3>Healthy Images</h3>
+            <p>{{ healthy_count }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Jaundiced Images</h3>
+            <p>{{ jaundiced_count }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Images</h3>
+            <p>{{ total_count }}</p>
+        </div>
+    </div>
+
+<h2>📊 Dataset Overview</h2>
+<ul style="list-style-type: none;">
+    <li><strong>Healthy Images:</strong> {{ healthy_count }}</li>
+    <li><strong>Jaundiced Images:</strong> {{ jaundiced_count }}</li>
+    <li><strong>Total Images:</strong> {{ total_count }}</li>
+</ul>
+
+<div style="display: flex; gap: 30px; flex-wrap: wrap;">
+    <div>
+        <h3>Bar Chart</h3>
+        <img src="{{ url_for('static', filename='image_counts.png') }}" width="300">
+    </div>
+    <div>
+        <h3>Pie Chart</h3>
+        <img src="{{ url_for('static', filename='image_pie.png') }}" width="300">
+    </div>
+</div>
+
+<!-- Optional Chart.js Example -->
+<h3 style="margin-top: 40px;">📈 Dynamic Chart</h3>
+<canvas id="dynamicChart" width="600" height="300"></canvas>
+<script>
+    const ctx = document.getElementById('dynamicChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Healthy', 'Jaundiced'],
+            datasets: [{
+                label: 'Image Count',
+                data: [{{ healthy_count }}, {{ jaundiced_count }}],
+                backgroundColor: ['#81c784', '#ff8a65']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>
+
+
+    <canvas id="datasetChart"></canvas>
+
+    <script>
+        const ctx = document.getElementById('datasetChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Healthy', 'Jaundiced'],
+                datasets: [{
+                    label: 'Number of Images',
+                    data: [{{ healthy_count }}, {{ jaundiced_count }}],
+                    backgroundColor: ['#66bb6a', '#ff7043']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Dataset Composition',
+                        color: '#444',
+                        font: {
+                            size: 18
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <a class="back-btn" href="{{ url_for('index') }}">← Back to Home</a>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,6 @@
+Result: Healthy Baby
+Suggestions: Baby appears healthy. Continue regular care and follow-up.
+Accuracy: 100.00%
+Precision: 1.00
+Recall: 0.00
+F1 Score: 0.00
